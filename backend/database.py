@@ -5,6 +5,7 @@ Handles all user CRUD, referral system, streaks, and leaderboard.
 No SQL — pure JSON persistence.
 """
 
+import os
 import json
 import logging
 import random
@@ -15,7 +16,7 @@ from typing import Optional, List, Dict, Any
 
 logger = logging.getLogger(__name__)
 
-DB_FILE = Path("database.json")
+DB_FILE = Path(os.getenv("DATABASE_PATH", "database.json"))
 
 LEVEL_THRESHOLDS = [
     (700, "Tamil Master"),

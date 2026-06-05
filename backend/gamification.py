@@ -4,6 +4,7 @@ Gamification engine for PIZHAI.
 Handles XP, levels, stars, streaks, and leaderboard persistence.
 """
 
+import os
 import json
 import logging
 from pathlib import Path
@@ -11,7 +12,7 @@ from typing import Dict, Any, List
 
 logger = logging.getLogger(__name__)
 
-LEADERBOARD_FILE = Path("leaderboard.json")
+LEADERBOARD_FILE = Path(os.getenv("LEADERBOARD_PATH", "leaderboard.json"))
 
 # Level definitions (ordered by min XP ascending)
 LEVELS = [
