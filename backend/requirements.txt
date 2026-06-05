@@ -7,3 +7,5 @@ gTTS
 python-dotenv
 Levenshtein
 torch
+pypdf
+python-docx
