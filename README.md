@@ -4,6 +4,16 @@
 
 ---
 
+## 🌐 Live Deployments & Project Status
+
+- **Frontend Client:** [https://pizhai.vercel.app](https://pizhai.vercel.app) (Deployed on Vercel)
+- **Backend API Server:** [https://trinalynus-pizhai-backend.hf.space](https://trinalynus-pizhai-backend.hf.space) (Deployed on Hugging Face Spaces)
+- **Speech-to-Text Backend:** Running local **OpenAI Whisper** via CPU on Hugging Face's free CPU-Basic (16GB RAM) instance (zero API keys required).
+- **Persistent Databases:** Uses JSON databases dynamically configurable via environment variables (`DATABASE_PATH`, `LEADERBOARD_PATH`) for container volumes.
+- **Large Files:** Video demonstration (`demo video.mp4`) hosted in the repository using **Git Large File Storage (LFS)**.
+
+---
+
 ## 🚀 Quick Start
 
 ### Prerequisites
