@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+python-multipart
+openai-whisper
+openai
+gTTS
+python-dotenv
+Levenshtein
+torch

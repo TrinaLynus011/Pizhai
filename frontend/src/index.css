@@ -1,0 +1,214 @@
+@import "tailwindcss";
+
+/* ─── Design System ────────────────────────────────────────────────────────── */
+@theme {
+  --font-sans: 'Inter', 'Noto Sans Tamil', system-ui, sans-serif;
+  --font-tamil: 'Noto Sans Tamil', sans-serif;
+
+  --color-bg-deep:        #F7F2EA; /* Warm Sand (Main Background) */
+  --color-bg-mid:         #EFE5D4; /* Soft Parchment (Secondary Surface) */
+  --color-bg-card:        #FFFCF7; /* Ivory (Card Surface) */
+  --color-border:         #DCCDB8; /* Borders */
+
+  --color-terracotta:     #A85D36; /* Deep Terracotta (Active Nav, Buttons, CTAs) */
+  --color-terracotta-light:#C47B54;
+  --color-olive:          #6F8A52; /* Olive Green (Progress, Success, Accuracy, Streaks) */
+  --color-olive-light:    #8DA670;
+  --color-gold:           #C79A3B; /* Antique Gold (Achievements, Milestones, Highlights) */
+  --color-gold-light:     #E3BA64;
+  --color-slate:          #73859A; /* Muted Slate Blue (AI, Insights, Speech Processing) */
+  --color-slate-light:    #94A4B8;
+
+  /* Backwards compatibility aliases to avoid breaking existing saffron/emerald styles */
+  --color-saffron:        #A85D36;
+  --color-saffron-light:  #C47B54;
+  --color-emerald:        #6F8A52;
+  --color-emerald-light:  #8DA670;
+  --color-sky:            #73859A;
+  --color-sky-light:      #94A4B8;
+  --color-purple:         #8D7B6C; /* Clay Grey */
+  --color-rose:           #C2593F; /* Warm Red-Clay (Warning/Error) */
+  --color-sage:           #A3B18A; /* Soft Sage */
+
+  --color-text-primary:   #3B2A1F; /* Deep Cocoa */
+  --color-text-secondary: #6E5847; /* Earth Brown */
+  --color-text-muted:     #8D7B6C; /* Muted Text */
+  --color-text-subtle:    #BCAFA4;
+
+  --radius-card: 12px;
+  --shadow-card: 0 4px 16px rgba(59, 42, 31, 0.04);
+  --shadow-glow-saffron: 0 0 15px rgba(168, 93, 54, 0.06);
+  --shadow-glow-sky:     0 0 15px rgba(115, 133, 154, 0.06);
+}
+
+/* ─── Base ──────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-bg-deep);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--color-bg-deep); }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-saffron); }
+
+/* ─── Tamil font class ──────────────────────────────────────────────────────── */
+.font-tamil { font-family: var(--font-tamil); }
+
+/* ─── Premium Card ──────────────────────────────────────────────────────────── */
+.glass {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  transition: all 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.glass:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-saffron);
+  box-shadow: 0 6px 20px rgba(165, 106, 67, 0.05);
+}
+
+/* ─── Gradient text ─────────────────────────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-saffron) 0%, var(--color-gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Glow button ───────────────────────────────────────────────────────────── */
+.btn-glow {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.btn-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.btn-glow:hover::before { opacity: 1; }
+.btn-glow:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(165, 106, 67, 0.1); }
+.btn-glow:active { transform: translateY(0); }
+
+/* ─── Animations ────────────────────────────────────────────────────────────── */
+@keyframes pulse-ring {
+  0%   { transform: scale(1);    opacity: 0.4; }
+  100% { transform: scale(1.5);  opacity: 0;   }
+}
+
+@keyframes mic-breathe {
+  0%, 100% { transform: scale(1);    box-shadow: 0 0 0 0 rgba(165,106,67,0.3); }
+  50%       { transform: scale(1.04); box-shadow: 0 0 0 12px rgba(165,106,67,0); }
+}
+
+@keyframes star-pop {
+  0%   { transform: scale(0) rotate(-30deg); opacity: 0; }
+  60%  { transform: scale(1.2) rotate(6deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg);   opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-4px) rotate(0.5deg); }
+}
+
+/* ─── Animation utility classes ─────────────────────────────────────────────── */
+.animate-slide-up   { animation: slide-up 0.4s ease both; }
+.animate-float      { animation: float 6s ease-in-out infinite; }
+.recording-pulse { animation: mic-breathe 1.8s ease-in-out infinite; }
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Mistake type colors ───────────────────────────────────────────────────── */
+.mistake-confusion  { border-color: var(--color-gold); background: rgba(217, 164, 65, 0.05); color: var(--color-text-primary); }
+.mistake-deletion   { border-color: var(--color-rose); background: rgba(194, 89, 63, 0.05); color: var(--color-text-primary); }
+.mistake-insertion  { border-color: var(--color-saffron); background: rgba(165, 106, 67, 0.05); color: var(--color-text-primary); }
+.mistake-mismatch   { border-color: var(--color-rose); background: rgba(194, 89, 63, 0.05); color: var(--color-text-primary); }
+.mistake-no_speech  { border-color: var(--color-text-muted); background: rgba(141, 123, 108, 0.05); }
+.mistake-awkward_pause { border-color: var(--color-gold); background: rgba(217, 164, 65, 0.03); }
+
+/* ─── Score ring ────────────────────────────────────────────────────────────── */
+.score-ring {
+  transform: rotate(-90deg);
+  transition: stroke-dashoffset 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ─── Level badge mapping ───────────────────────────────────────────────────── */
+.level-beginner     { background: #EFE5D4; border: 1px solid #DCCDB8; color: #6E5847; font-weight: 700; }
+.level-learner      { background: #F5E2C4; border: 1px solid #D9A441; color: #3B2A1F; font-weight: 700; }
+.level-fluent       { background: #F0DDD0; border: 1px solid #A56A43; color: #3B2A1F; font-weight: 700; }
+.level-tamil-master { background: #E2ECDA; border: 1px solid #6A8A4F; color: #3B2A1F; font-weight: 700; }
+
+/* ─── Premium Interaction Utilities ────────────────────────────────────────── */
+.active-scale:active, .active-btn:active {
+  transform: scale(0.98);
+  transition: transform 0.1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.success-checkmark {
+  animation: scale-up-bounce 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+@keyframes scale-up-bounce {
+  0% { transform: scale(0); opacity: 0; }
+  75% { transform: scale(1.08); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.xp-float-fade {
+  animation: float-up-fade 1.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes float-up-fade {
+  0% { transform: translateY(10px); opacity: 0; }
+  15% { opacity: 1; }
+  100% { transform: translateY(-40px); opacity: 0; }
+}
+
+/* ─── Micro Animations V4 ─────────────────────────────────────────────────── */
+.hover-lift {
+  transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.18s, box-shadow 0.18s;
+}
+.hover-lift:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 6px 20px rgba(59, 42, 31, 0.05) !important;
+}
+
+.hover-btn {
+  transition: transform 0.15s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.15s, opacity 0.15s;
+}
+.hover-btn:hover {
+  transform: scale(1.02) !important;
+}
+
+/* Staggered entrance animations */
+@keyframes fadeInSlideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.stagger-0 { animation: fadeInSlideUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0s both; }
+.stagger-1 { animation: fadeInSlideUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both; }
+.stagger-2 { animation: fadeInSlideUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.16s both; }
+.stagger-3 { animation: fadeInSlideUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.24s both; }
+.stagger-4 { animation: fadeInSlideUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.32s both; }
+.stagger-5 { animation: fadeInSlideUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.40s both; }
+

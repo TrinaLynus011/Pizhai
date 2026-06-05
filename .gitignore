@@ -1,0 +1,27 @@
+# Dependencies
+frontend/node_modules/
+frontend/dist/
+
+# Python Virtual Environment and Cache
+backend/venv/
+backend/__pycache__/
+**/__pycache__/
+backend/temp/
+backend/static/audio/*.mp3
+backend/static/audio/*.wav
+backend/static/audio/*.webm
+
+# Environment variables
+.env
+.env.local
+.env.production
+.env.development
+backend/.env
+
+# Editor & System Files
+.vscode/
+.idea/
+.DS_Store
+*.log
+Thumbs.db
+desktop.ini

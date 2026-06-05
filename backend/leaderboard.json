@@ -1,0 +1,11 @@
+[
+  {
+    "username": "TestUser",
+    "xp": 5,
+    "streak": 0,
+    "attempts": 1,
+    "level": "Beginner",
+    "level_emoji": "🌱",
+    "level_color": "#6EE7B7"
+  }
+]
