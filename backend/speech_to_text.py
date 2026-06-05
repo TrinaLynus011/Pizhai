@@ -31,9 +31,10 @@ def _initialize():
     # Try loading local openai-whisper model
     try:
         import whisper  # type: ignore
-        logger.info("⏳ Loading local Whisper model (base)... this may take 30s on first run.")
-        _whisper_model = whisper.load_model("base")
-        logger.info("✅ Local Whisper model loaded successfully.")
+        model_name = os.getenv("WHISPER_MODEL", "base").strip()
+        logger.info(f"⏳ Loading local Whisper model ({model_name})... this may take 30s on first run.")
+        _whisper_model = whisper.load_model(model_name)
+        logger.info(f"✅ Local Whisper model ({model_name}) loaded successfully.")
     except ImportError:
         logger.warning(
             "⚠️  openai-whisper not installed. "
