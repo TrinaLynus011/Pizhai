@@ -1,6 +1,9 @@
 // services/api.js — All backend API calls (v2 with referral + user auth)
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+let API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+if (API_BASE && !API_BASE.startsWith('http://') && !API_BASE.startsWith('https://')) {
+  API_BASE = 'https://' + API_BASE;
+}
 
 async function safeFetch(url, options = {}) {
   const res = await fetch(url, options);
